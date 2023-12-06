@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1500"
+   LastUpgradeVersion = "0500"
    version = "2.0">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-               BuildableName = "Dental Exp.app"
+               BuildableName = "finalone.app"
                BlueprintName = "Unity-iPhone"
                ReferencedContainer = "container:Unity-iPhone.xcodeproj">
             </BuildableReference>
@@ -31,7 +31,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "Dental Exp.app"
+            BuildableName = "finalone.app"
             BlueprintName = "Unity-iPhone"
             ReferencedContainer = "container:Unity-iPhone.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "Dental Exp.app"
+            BuildableName = "finalone.app"
             BlueprintName = "Unity-iPhone"
             ReferencedContainer = "container:Unity-iPhone.xcodeproj">
          </BuildableReference>
@@ -87,7 +87,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "Dental Exp.app"
+            BuildableName = "finalone.app"
             BlueprintName = "Unity-iPhone"
             ReferencedContainer = "container:Unity-iPhone.xcodeproj">
          </BuildableReference>

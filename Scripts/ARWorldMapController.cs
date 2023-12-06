@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+
 #if UNITY_IOS
 using System.Collections;
 using Unity.Collections;
@@ -24,6 +25,9 @@ namespace UnityEngine.XR.ARFoundation.Samples
         [SerializeField]
         ARSession m_ARSession;
 
+        [SerializeField]
+        Animator bubbleAnimator;
+
         [Tooltip("UI Text component to display error messages")]
         [SerializeField]
         Text m_ErrorText;
@@ -45,6 +49,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
         Button m_LoadButton;
 
         static string path => Path.Combine(Application.persistentDataPath, "my_session.worldmap");
+        bool isAnimationPlaying = false;
 
         bool supported
         {
@@ -167,7 +172,8 @@ namespace UnityEngine.XR.ARFoundation.Samples
             data.CopyFrom(allBytes.ToArray());
 
             Log("Deserializing to ARWorldMap...");
-            if (ARWorldMap.TryDeserialize(data, out ARWorldMap worldMap))
+            ARWorldMap worldMap;
+            if (ARWorldMap.TryDeserialize(data, out worldMap))
                 data.Dispose();
 
             if (worldMap.valid)
@@ -180,7 +186,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 yield break;
             }
 
-            Log("Apply ARWorldMap to current session.");
+            Log("Apply ARWorldMap to the current session.");
             sessionSubsystem.ApplyWorldMap(worldMap);
         }
 #endif
@@ -246,7 +252,41 @@ namespace UnityEngine.XR.ARFoundation.Samples
             }
             SetText(m_LogText, msg);
             SetText(m_MappingStatusText, $"Mapping Status: {sessionSubsystem.worldMappingStatus}");
+
+            // Check proximity to the anchor
+            if (IsPlayerNearAnchor())
+            {
+                if (!isAnimationPlaying)
+                {
+                    // Start the bubble animation
+                    bubbleAnimator.SetBool("IsPlaying", true);
+                    isAnimationPlaying = true;
+                }
+            }
+            else
+            {
+                if (isAnimationPlaying)
+                {
+                    // Stop the bubble animation
+                    bubbleAnimator.SetBool("IsPlaying", false);
+                    isAnimationPlaying = false;
+                }
+            }
 #endif
+        }
+
+        bool IsPlayerNearAnchor()
+        {
+            // Implement logic to check proximity to the anchor
+            // For example, using raycasting to determine distance
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit))
+            {
+                float thresholdDistance = 2.0f; // Set your desired threshold distance
+                return hit.distance < thresholdDistance;
+            }
+
+            return false;
         }
     }
 }
